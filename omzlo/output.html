@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Game Clock</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="game-clock">Game Clock</h1>
+<p>High quality and accurate timekeeping device that can also be reprogrammed.</p>
+<p><img src="static/std_gameclock-main.jpg" title="Game Clock" /></p>
+<h2 id="overview">Overview</h2>
+<p>Keep track of play time such as during a game of chess. All the components in place for you to upload your own software using the Arduino IDE.</p>
+<h1 id="hardware">Hardware</h1>
+<h2 id="power">Power</h2>
+<p>There are several options:</p>
+<p>2 x AA alkaline or rechargeable batteries (recommended for portable use) USB (for continuous usage) Serial Port / ISP Header (during programming, debugging, etc.)</p>
+<h2 id="microcontroller">Microcontroller</h2>
+<p>At the heart of the game clock is the ATmega328PB microcontroller.</p>
+<p>This is the new and updated version of the classic microcontroller that you may find on the Arduino boards.</p>
+<p>Running at 8MHz and 3.3 volts.</p>
+<h2 id="buttons">Buttons</h2>
+<p>High quality and durable buttons.</p>
+<p>Left and right micro switches and central push button.</p>
+<h2 id="display">Display</h2>
+<p>8-Digit LED Display controlled by a MAX7219CWG IC.</p>
+<p>Brightness controlled by software.</p>
+<h2 id="audio">Audio</h2>
+<p>Passive buzzer capable of playing tones of varying frequencies.</p>
+<h2 id="wireless-communications">Wireless Communications</h2>
+<p>20-pin connector for XBee module for wireless communication and control.</p>
+<h2 id="real-time-clock">Real-time clock</h2>
+<p>Extremely accurate timekeeping using a DS3231M IC.</p>
+<h1 id="software">Software</h1>
+<h2 id="arduino-compatibility">Arduino compatibility</h2>
+<p>The built-in board definition for the “Arduino Pro or Pro Mini” in the Arduino 1.8 IDE is all you need to start programming the Game Clock with your own software.</p>
+<p>Select “Tools” in the menu and select “Board” :</p>
+<p><img src="static/std_software-selectboard1.png" title="Menu Select Board" /></p>
+<p>Choose the “Arduino Pro or Pro Mini” board:</p>
+<p><img src="static/std_software-selectboard2.png" title="Menu Select Board" /></p>
+<p>Select “Tools” from the menu and then “Processor”:</p>
+<p><img src="static/std_software-selectboard3.png" title="Menu Select Board" /></p>
+<p>Choose “ATmega328P (3.3V, 8MHz)”:</p>
+<p><img src="static/std_software-selectboard4.png" title="Menu Select Board" /></p>
+<h2 id="serial-port-programming">Serial Port Programming</h2>
+<p>A USB to serial board is required (not included) to upload software from the Arduino IDE to the Game Clock using the 6-pin connector located at the back of the device.</p>
+<p>The SparkFun FTDI Basic Breakout is highly recommended due to the low hassle factor.</p>
+<p>Select “Tools” and then “Port”:</p>
+<p><img src="static/std_software-selectport1.png" title="Menu Select Port" /></p>
+<p>Select your serial port (yours will have a different identifier):</p>
+<p><img src="static/std_software-selectport2.png" title="Menu Select Port" /></p>
+<h1 id="pins">Pins</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Input</th>
+<th style="text-align: center;">Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Button 1 (RIGHT)</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Button 2 (LEFT)</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">button 3 (MIDDLE)</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Output</th>
+<th style="text-align: center;">Pin(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Passive Buzzer</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">XBee enable/disable</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Display</td>
+<td style="text-align: center;">13,12,11,10 (SPI)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RTC</td>
+<td style="text-align: center;">A4, A5 (i2c)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="resources">Resources</h1>
+<p>Link to ino file</p>
+<p>Link to hex file</p>
+<p>Link to PDF instructions</p>
+<p><a href="https://www.microchip.com/wwwproducts/en/ATmega328PB">ATmega328PB datasheet</a></p>
+</body>
+</html>
