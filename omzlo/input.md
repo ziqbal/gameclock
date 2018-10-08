@@ -2,7 +2,7 @@
 
 Play "blitz chess" like a real hacker, with our modern-retro Arduino-compatible **Game Clock**! 
 
-![Game Clock](static/std_gameclock-main.jpg.jpg)
+![Game Clock](static/std_gameclock-main.jpg)
 
 If you play any game that requires accurate timekeeping, you will love the **Game Clock**. Designed
  with high quality snap action switches and a high-precision real-time clock, the **Game Clock** 

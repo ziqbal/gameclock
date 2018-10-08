@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Game Clock</title>
+  <title>input</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -17,98 +17,189 @@
 </head>
 <body>
 <h1 id="game-clock">Game Clock</h1>
-<p>High quality and accurate timekeeping device that can also be reprogrammed.</p>
-<p><img src="static/std_gameclock-main.jpg" title="Game Clock" /></p>
-<h2 id="overview">Overview</h2>
-<p>Keep track of play time such as during a game of chess. All the components in place for you to upload your own software using the Arduino IDE.</p>
-<h1 id="hardware">Hardware</h1>
-<h2 id="power">Power</h2>
-<p>There are several options:</p>
-<p>2 x AA alkaline or rechargeable batteries (recommended for portable use) USB (for continuous usage) Serial Port / ISP Header (during programming, debugging, etc.)</p>
-<h2 id="microcontroller">Microcontroller</h2>
-<p>At the heart of the game clock is the ATmega328PB microcontroller.</p>
-<p>This is the new and updated version of the classic microcontroller that you may find on the Arduino boards.</p>
-<p>Running at 8MHz and 3.3 volts.</p>
-<h2 id="buttons">Buttons</h2>
-<p>High quality and durable buttons.</p>
-<p>Left and right micro switches and central push button.</p>
-<h2 id="display">Display</h2>
-<p>8-Digit LED Display controlled by a MAX7219CWG IC.</p>
-<p>Brightness controlled by software.</p>
-<h2 id="audio">Audio</h2>
-<p>Passive buzzer capable of playing tones of varying frequencies.</p>
-<h2 id="wireless-communications">Wireless Communications</h2>
-<p>20-pin connector for XBee module for wireless communication and control.</p>
-<h2 id="real-time-clock">Real-time clock</h2>
-<p>Extremely accurate timekeeping using a DS3231M IC.</p>
-<h1 id="software">Software</h1>
+<p>Play “blitz chess” like a real hacker, with our modern-retro Arduino-compatible <strong>Game Clock</strong>!</p>
+<figure>
+<img src="static/std_gameclock-main.jpg" alt="Game Clock" /><figcaption>Game Clock</figcaption>
+</figure>
+<p>If you play any game that requires accurate timekeeping, you will love the <strong>Game Clock</strong>. Designed with high quality snap action switches and a high-precision real-time clock, the <strong>Game Clock</strong> will react to your touch within milliseconds. While similar devices typically come in a boring beige enclosure, the <strong>Game Clock</strong> is proudly exposing it’s internal circuitry and deep black PCB in a fully transparent 3mm acrylic laser-cut enclosure. It is primarily designed for chess games that are played in contrained times, but offers plenty of configurability. The device can be powered by 2 AA batteries or a USB cable, so you can take it anywhere.</p>
+<p>The <strong>Game Clock</strong> also comes a truly hackable device. Open source and open hardware, it can be fully reprogrammed in the Arduino environement to suit the most exotic needs. The <strong>Game Clock</strong> features an XBee compatible socket for optional low power networking: imagine keeping track of all games in a chess tournament in real time!</p>
+<p>The <strong>Game Clock</strong> features:</p>
+<ul>
+<li>two 4-digit red led displays,</li>
+<li>two high quality Honeywell snap action switches and a tact switch,</li>
+<li>an Atmel ATmega328PB microcontroller with 32K flash and 2K SRAM / 1K eeprom,</li>
+<li>an extremely accurate I2C-Integrated RTC, the DS3231, with an accuracy of 2ppm over 0 to 40C,</li>
+<li>a battery holder for two AA batteries,</li>
+<li>a USB socket,</li>
+<li>a 20-pin XBee socket for the addition of an <em>optional</em> wireless module,</li>
+<li>voltage regulation circuitry provding 4.9V to the MCU and an optional 3.3V for a wireless module,</li>
+<li>a buzzer.</li>
+</ul>
+<p>Most of all, it looks cool!</p>
+<h2 id="using-the-game-clock">Using the Game Clock</h2>
+<p><em>We should add a brief user manual here for the default firmware, the setup, modes, etc or a link to a PDF/DOC</em></p>
+<h2 id="hardware-overview">Hardware overview</h2>
+<p><strong>Power</strong>: The Game Clock can be powered with:</p>
+<ul>
+<li>2 x AA alkaline or rechargeable batteries (recommended for portable use)</li>
+<li>USB (for continuous usage)</li>
+<li>Serial Port / ISP Header (during programming, debugging, etc.)</li>
+</ul>
+<p>An boost regulator assures constant voltage to the device regardless of the power source used. USB power always takes priority over battery power.</p>
+<p>A small switch allows to power the device on or off.</p>
+<p><strong>Microcontroller</strong>: At the heart of the Game Clock is an ATmega328PB microcontroller running at 8MHz and 4.9 volts. It features 32K flash, 2K SRAM and 1K EEPROM. This is the new and updated version of the classic microcontroller that you may find on the Arduino UNO boards. It comes proprogrammed with a serial bootloader that uses 8K of flash.</p>
+<p><strong>Buttons</strong>: The Game Clock features two high quality snap action micro switches rated for 10 million cycles! In addition a traditional tact switch is seated in the center top of the board, notably to access various configuration options.</p>
+<p><strong>Display</strong>: The device can display information to the user through 8 red LED digits, physically split in two two 4-digit red LED displays, typically used during game play to show the time available to each player. The LED display is controlled by a MAX7219CWG IC through SPI, with software controlled brightness.</p>
+<p><strong>Sound</strong>: The Game Clock is fitted with a passive buzzer capable of playing tones of varying frequencies, providing audio feedback to users.</p>
+<p><strong>Real time clock</strong>: The circuit features a DS3231M IC, a very accurate RTC with an integrated callibrated and temperature compensated oscillator. It communicates with the MCU using the I2C bus.</p>
+<p><strong>XBee headers</strong>: The gameclock has a 20-pin header that allows it to be optionally connected to an XBee wireless communication module. An onboard 3.3 LDO and voltage shifting circuit assures compatibility between the MCU and the XBee logic levels. In order to conserve energy, the 3.3V LDO is disabled by default and can be enabled by software on the MCU when necessary.</p>
 <h2 id="arduino-compatibility">Arduino compatibility</h2>
+<p>The Game Clock is built around an Atmel ATmega328PB, and can be programmed like a classic Arduino UNO R3, using the Arduino IDE without any additional software installation.</p>
+<p>A USB to serial board is required (not included) to upload software from the Arduino IDE to the Game Clock using the 6-pin connector located at the back of the device. We use and recommend the SparkFun FTDI Basic Breakout. It’s hassle free and easy to plug into the Game Clock.</p>
+<h3 id="configuring-the-arduino-ide">Configuring the Arduino IDE</h3>
 <p>The built-in board definition for the “Arduino Pro or Pro Mini” in the Arduino 1.8 IDE is all you need to start programming the Game Clock with your own software.</p>
 <p>Select “Tools” in the menu and select “Board” :</p>
-<p><img src="static/std_software-selectboard1.png" title="Menu Select Board" /></p>
+<figure>
+<img src="static/std_software-selectboard1.png" alt="Menu Select Board" /><figcaption>Menu Select Board</figcaption>
+</figure>
 <p>Choose the “Arduino Pro or Pro Mini” board:</p>
-<p><img src="static/std_software-selectboard2.png" title="Menu Select Board" /></p>
+<p><img src="static/std_software-selectboard2.png" /></p>
 <p>Select “Tools” from the menu and then “Processor”:</p>
-<p><img src="static/std_software-selectboard3.png" title="Menu Select Board" /></p>
+<p><img src="static/std_software-selectboard3.png" /></p>
 <p>Choose “ATmega328P (3.3V, 8MHz)”:</p>
-<p><img src="static/std_software-selectboard4.png" title="Menu Select Board" /></p>
-<h2 id="serial-port-programming">Serial Port Programming</h2>
-<p>A USB to serial board is required (not included) to upload software from the Arduino IDE to the Game Clock using the 6-pin connector located at the back of the device.</p>
-<p>The SparkFun FTDI Basic Breakout is highly recommended due to the low hassle factor.</p>
-<p>Select “Tools” and then “Port”:</p>
+<p><img src="static/std_software-selectboard4.png" /></p>
+<p>Your Arduino IDE is now correctly configured to write software for the Game Clock. To upload a sketch, please check out the following isntructions.</p>
+<h3 id="serial-port-programming">Serial Port Programming</h3>
+<p>Plug your USB to Serial adapter into the Game Clock’s 6-pin serial connector. If needed, the serial pin are identified on the silkscreen at the back of the Game Clock PCB, so that you can check your connection.</p>
+<p>In the Arduino IDE, select “Tools” and then “Port”:</p>
 <p><img src="static/std_software-selectport1.png" title="Menu Select Port" /></p>
 <p>Select your serial port (yours will have a different identifier):</p>
 <p><img src="static/std_software-selectport2.png" title="Menu Select Port" /></p>
-<h1 id="pins">Pins</h1>
+<p>You can now upload a sketch to your device!</p>
+<h3 id="arduino-pins">Arduino Pins</h3>
+<p>The following table summarizes the wiring of the Game Clock MCU:</p>
 <table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 28%" />
+<col style="width: 20%" />
+<col style="width: 28%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">Input</th>
-<th style="text-align: center;">Pin</th>
+<th style="text-align: center;">Arduino Pin</th>
+<th style="text-align: center;">ATmega328pb pin</th>
+<th style="text-align: center;">Input/Output</th>
+<th style="text-align: center;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Button 1 (RIGHT)</td>
-<td style="text-align: center;">3</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">PD0</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: center;">Serial RX for Arduino programming and optional XBee communication.</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Button 2 (LEFT)</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">PD1</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: center;">Serial TX for Arduino programming and optional XBee communication.</td>
+</tr>
+<tr class="odd">
 <td style="text-align: center;">2</td>
+<td style="text-align: center;">PD2</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: center;">Left snap action switch (active low)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">PD3</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: center;">Right snap action switch (active low)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">button 3 (MIDDLE)</td>
 <td style="text-align: center;">4</td>
+<td style="text-align: center;">PD4</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: center;">Center tact switch (active low)</td>
 </tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Output</th>
-<th style="text-align: center;">Pin(s)</th>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">PD5</td>
+<td style="text-align: center;">N.C.</td>
+<td style="text-align: center;"><em>Unused</em></td>
 </tr>
-</thead>
-<tbody>
 <tr class="odd">
-<td style="text-align: center;">Passive Buzzer</td>
 <td style="text-align: center;">6</td>
+<td style="text-align: center;">PD6</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: center;">Buzzer</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">XBee enable/disable</td>
 <td style="text-align: center;">7</td>
+<td style="text-align: center;">PD7</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: center;">Enables the 3.3V LDO</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Display</td>
-<td style="text-align: center;">13,12,11,10 (SPI)</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">PB0</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: center;">Connected to the SQW pin of the DS3231 RTC</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">RTC</td>
-<td style="text-align: center;">A4, A5 (i2c)</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">PB1</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: center;">Optional XBee RSSI</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10, 11, 12, 13</td>
+<td style="text-align: center;">PB2, PB3, PB4, PB5</td>
+<td style="text-align: center;">Input/Output</td>
+<td style="text-align: center;">SS, MOSI, MISO and CLK for SPI connection to ICSP port and MAX7219 LED driver.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">14 (A0)</td>
+<td style="text-align: center;">PC0</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: center;">Optional XBee RTS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">15 (A1)</td>
+<td style="text-align: center;">PC1</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: center;">Optional XBee CTS</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">16 (A2)</td>
+<td style="text-align: center;">PC2</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: center;">Optional XBee ASSOC</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">17 (A3)</td>
+<td style="text-align: center;">PC3</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: center;">Input voltage level sensing, either (1) battery voltage or (2) USB voltage - 0.6V</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">18, 19 (A4, A5)</td>
+<td style="text-align: center;">PC4, PC5</td>
+<td style="text-align: center;">Input/Output</td>
+<td style="text-align: center;">SDA and SCL for I2C connection to the DS3231 RTC</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">N/A</td>
+<td style="text-align: center;">PB6</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: center;">Connected to the CLK32K pin of the DS3231 RTC</td>
 </tr>
 </tbody>
 </table>
-<h1 id="resources">Resources</h1>
+<h2 id="resources">Resources</h2>
+<p>Link to schematics</p>
 <p>Link to ino file</p>
 <p>Link to hex file</p>
 <p>Link to PDF instructions</p>
